@@ -1,0 +1,30 @@
+body {
+  overflow: hidden;
+  -webkit-text-stroke: thin #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  user-select: none;
+}
+
+header {
+  height: 75px;
+  overflow: hidden;
+  display: grid;
+  place-content: center;
+}
+
+main .screen {
+  background-size: cover;
+  height: calc(100vh - 75px);
+  transition: all .15s linear;
+  opacity: 1;
+  position: relative;
+  bottom: 0;
+}
+
+main .screen:not(.show) {
+  height: 0;
+  bottom: 100%;
+  opacity: 0;
+  transition-delay: .15s;
+}
