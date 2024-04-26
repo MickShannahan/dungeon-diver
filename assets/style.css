@@ -1,4 +1,3 @@
-
 body {
   overflow: hidden;
   font-weight: bold;
@@ -6,7 +5,8 @@ body {
   user-select: none;
   background-color: black;
 }
-.text-outline{
+
+.text-outline {
   -webkit-text-stroke: thin #fff;
 }
 
@@ -18,7 +18,9 @@ header {
 }
 
 main .screen {
-  -webkit-text-stroke: thin #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-size: cover;
   height: calc(100vh - 175px);
   transition: all .15s linear;
@@ -27,18 +29,218 @@ main .screen {
   bottom: 0;
 }
 
-main .screen:not(.show) {
+main .screen:not(.active) {
   height: 0;
   bottom: 100%;
   opacity: 0;
   transition-delay: .15s;
+  pointer-events: none;
+  /* Keeps items from being clickable*/
 }
 
-footer{
+footer {
   height: 100px;
   background-color: var(--bs-dark);
+  position: sticky;
+  bottom: 0;
 }
 
-#start-screen{
+#start-screen {
   background-image: url(../assets/imgs/start-screen.gif);
+}
+
+#map-screen {
+  background-image: url(https://thumbs.dreamstime.com/b/pixel-art-illustration-showcasing-top-view-fantasy-game-interface-featuring-vibrant-colors-intricate-details-variety-278821511.jpg);
+}
+
+#camp-screen {
+  background-image: url(https://c4.wallpaperflare.com/wallpaper/449/968/939/pixel-art-fire-moon-the-sin-of-man-wallpaper-preview.jpg);
+}
+
+#game-screen {
+  background-image: url(https://64.media.tumblr.com/00ec803404f6e9d6583f92d8870b5fb8/tumblr_p7k8f3fMWS1wvbydeo1_1280.png)
+}
+
+#report-window {
+  padding: .75me;
+  opacity: .7;
+  position: fixed;
+  left: 1em;
+  top: 1em;
+  border-radius: 10px;
+  width: 50ch;
+  font-size: 13px;
+  height: 50px;
+  overflow-y: scroll;
+  background-color: rgba(133, 126, 126, 0.507);
+  backdrop-filter: blur(15px);
+  border: double rgb(241, 241, 241) 3px;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.455);
+  transition: all .2s linear;
+}
+
+#report-window:hover {
+  opacity: 1;
+  height: 200px;
+}
+
+
+.hand-wrapper {
+  position: fixed;
+  bottom: 20px;
+  width: 100%;
+}
+
+#player-hand {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 0px;
+}
+
+#player,
+#monster {
+  backdrop-filter: drop-shadow(0px 0px 5px black);
+}
+
+.rps-card {
+  margin-inline: -10px;
+  background-color: rgba(133, 126, 126, 0.507);
+  backdrop-filter: blur(15px);
+  box-shadow: 0px 5px 5px black;
+  text-shadow: 0px 0px 4px black;
+  color: var(--bs-light);
+  text-align: center;
+  width: 18ch;
+  height: 24ch;
+  border: double rgb(241, 241, 241) 3px;
+  border-radius: 8px;
+}
+
+
+.rps-card:hover {
+  z-index: 100;
+  transform: translateY(-10px);
+  transition: all .2s cubic-bezier(0.175, 0.885, 0.32, 1.7);
+}
+
+.shop-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-image {
+  height: 200px;
+  width: 200px;
+}
+
+.monster-image {
+  height: 200px;
+  width: 200px;
+
+  animation: bounce .75s ease-out infinite;
+  transform-origin: bottom;
+
+}
+
+.dead {
+  animation: dead .7s linear forwards
+}
+
+.grow-in {
+  animation: grow .5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes dead {
+  0% {
+    position: relative;
+    transform: translate(0px, 0px) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    position: relative;
+    transform: translate(0px, -50%) rotate(360deg) scale(.5);
+  }
+
+  100% {
+    position: relative;
+    transform: translate(0px, -100%) rotate(720deg) scale(.25);
+    opacity: 0;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scaleY(.8);
+  }
+
+  25% {
+    transform: scaleY(1) rotate(-5deg);
+  }
+
+  50% {
+    transform: scaleY(.8);
+  }
+
+  75% {
+    transform: scaleY(1) rotate(5deg);
+  }
+
+  100% {
+    transform: scaleY(.8);
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(1);
+    filter: hue-rotate(0deg);
+  }
+
+  20% {
+    transform: scale(1.25);
+    filter: hue-rotate(15deg);
+  }
+
+  100% {
+    transform: scale(1);
+    filter: hue-rotate(0deg);
+  }
+}
+
+@keyframes shakeX {
+  0% {
+    transform: translate(0px, 0px);
+  }
+
+  10% {
+    transform: translate(-5px, 0px);
+  }
+
+  20% {
+    transform: translate(5px, 0px);
+  }
+
+  30% {
+    transform: translate(-5px, 0px);
+  }
+
+  40% {
+    transform: translate(5px, 0px);
+  }
+
+  50% {
+    transform: translate(-5px, 0px);
+  }
+
+  60% {
+    transform: translate(5px, 0px);
+  }
+
+  100% {
+    transform: translate(0px, 0px);
+  }
 }
